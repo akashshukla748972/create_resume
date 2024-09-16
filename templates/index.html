@@ -1,0 +1,405 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static './index.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row card shadow-lg my-4 p-5 text-center">
+        <h1 class="text-center">RESUME</h1>
+        <p class="text-danger">
+          <span>*</span>Please fill the form all feaild are required
+        </p>
+      </div>
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="row card shadow-lg p-5 mb-5">
+          <h3 class="text-muted text-center">Your details</h3>
+
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              placeholder="enter your name"
+            />
+          </div>
+
+          <div class="form-group mx-3">
+            <label for="email">E-Mail</label>
+            <input
+              type="text"
+              class="form-control"
+              name="email"
+              placeholder="enter your email"
+            />
+          </div>
+
+          <div class="form-group mx-3">
+            <label for="contact">Contact</label>
+            <input
+              type="text"
+              class="form-control"
+              name="contact"
+              placeholder="enter your contact"
+            />
+          </div>
+
+          <div class="form-group mx-3">
+            <label for="name">Address</label>
+            <input
+              type="text"
+              class="form-control"
+              name="address"
+              placeholder="enter your address"
+            />
+          </div>
+        </div>
+
+        <div class="row card shadow-lg p-5 mb-5">
+          <h3 class="text-muted text-center mb-4">Add your Qualification's</h3>
+          <div class="row d-flex justify-content-center" id="mainRow">
+            <div class="row">
+              <div class="form-group mx-3">
+                <label class="text-muted">Qualification</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="cname"
+                  placeholder="enter your qualification"
+                />
+              </div>
+
+              <div class="form-group mx-3">
+                <label class="text-muted">Board/University</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="college"
+                  placeholder="enter your board university"
+                />
+              </div>
+
+              <div class="form-group mx-3">
+                <label class="text-muted">Year Of Passing</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="yearofpassing"
+                  placeholder="enter year of passing"
+                />
+              </div>
+
+              <div class="form-group mx-3">
+                <label class="text-muted">Percentage/CGPA</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="marks"
+                  placeholder="enter marks"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row d-flex justify-content-end mr-5">
+            <button
+              type="button"
+              class="btn btn-info"
+              onclick="addQualification()"
+            >
+              Add more..
+            </button>
+          </div>
+        </div>
+
+        <div class="row card shadow-lg p-5 mb-5">
+          <h3 class="text-muted text-center">Add Profesional skills</h3>
+          <div class="row" id="profesionalSkills">
+            <div class="col-md-12">
+              <div class="form-group mx-3">
+                <label>Profesional skill</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter here"
+                  name="skills"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row d-flex justify-content-end mr-5">
+            <button
+              type="button"
+              class="btn btn-info"
+              onclick="addProfesionalSkills()"
+            >
+              Add more...
+            </button>
+          </div>
+        </div>
+
+        <div class="row card shadow-lg p-5 mb-5">
+          <h3 class="text-muted text-center">Add hobbies</h3>
+          <div class="row" id="hobbies">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Your hobbies</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="enter here.."
+                  name="hobbies"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row d-flex justify-content-end mr-5">
+            <button type="button" class="btn btn-info" onclick="addHobbies()">
+              Add more...
+            </button>
+          </div>
+        </div>
+
+        <div class="row card shadow-lg p-5 mb-5">
+          <h3 class="text-muted text-center">Add Strength factor</h3>
+          <div class="row" id="strength">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Your Strength factor</label>
+                <input
+                  type="text"
+                  name="strength"
+                  class="form-control"
+                  placeholder="enter here"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row d-flex justify-content-end mr-5">
+            <button type="button" class="btn btn-info" onclick="addStrength()">
+              Add more...
+            </button>
+          </div>
+        </div>
+
+        <div class="row card shadow-lg p-5 mb-5">
+          <h3 class="text-muted text-center">Add some more personal details</h3>
+          <div class="row" id="personal">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Father Name</label>
+                <input
+                  type="text"
+                  name="fathername"
+                  class="form-control"
+                  placeholder="enter here"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="mr-4 d-block">Gender</label>
+                Male :
+                <input
+                  type="radio"
+                  name="gender"
+                  value="Male"
+                  placeholder="enter here"
+                />
+                Female :
+                <input
+                  type="radio"
+                  name="gender"
+                  value="Female"
+                  placeholder="enter here"
+                />
+                Outher :
+                <input
+                  type="radio"
+                  name="gender"
+                  value="Outher"
+                  placeholder="enter here"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Nationality</label>
+                <input
+                  type="text"
+                  name="nationality"
+                  class="form-control"
+                  placeholder="enter here"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="d-block">Marital Status</label>
+                Married :
+                <input
+                  type="radio"
+                  name="maritalstatus"
+                  value="Married"
+                  placeholder="enter here"
+                />
+                Unmarried :
+                <input
+                  type="radio"
+                  name="maritalstatus"
+                  value="Unmarried"
+                  placeholder="enter here"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Language Known</label>
+                hindi<input type="checkbox" value="Hindi" name="lang" id="" />
+                english<input
+                  type="checkbox"
+                  value="English"
+                  name="lang"
+                  id=""
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Category</label>
+                <select name="category">
+                  <option value="" selected="true">
+                    ---Select Category---
+                  </option>
+                  <option value="general">General</option>
+                  <option value="st">ST</option>
+                  <option value="sc">SC</option>
+                  <option value="obc">OBC</option>
+                  <option value="outher">Outher</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Religion</label>
+                <input
+                  type="text"
+                  name="religion"
+                  id=""
+                  placeholder="enter here"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" name="dob" id="" placeholder="enter here" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row card shadow-lg p-5 mb-5">
+          <button class="btn btn-primary">Send</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      function addQualification() {
+        let mainRow = document.getElementById("mainRow");
+
+        function CreateRow() {
+          let div = document.createElement("div");
+          div.classList = "row mt-1";
+          let i = 1;
+          div.innerHTML = `<div class="form-group mx-3"><input type="text" class="form-control" name="cname" placeholder="enter your qualification"/></div><div class="form-group mx-3"><input type="text" class="form-control" name="college" placeholder="enter your board university"/></div><div class="form-group mx-3"><input type="text" class="form-control" name="yearofpassing" placeholder="enter year of passing"/></div><div class="form-group mx-3"><input type="text" class="form-control" name="marks" placeholder="enter marks"/></div>`;
+
+          return div;
+        }
+        let div = CreateRow();
+        mainRow.appendChild(div);
+      }
+
+      function addProfesionalSkills() {
+        let mainRow = document.getElementById("profesionalSkills");
+
+        function CreateRow() {
+          let div = document.createElement("div");
+          div.classList = "col-md-12";
+          let i = 1;
+          div.innerHTML = `<div class="form-group mx-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter here"
+                  name="skills"
+                />
+              </div>`;
+
+          return div;
+        }
+        let div = CreateRow();
+        mainRow.appendChild(div);
+      }
+
+      function addHobbies() {
+        let mainRow = document.getElementById("hobbies");
+
+        function CreateRow() {
+          let div = document.createElement("div");
+          div.classList = "col-md-12";
+          let i = 1;
+          div.innerHTML = `<div class="form-group mx-3">
+                <input type="text" class="form-control" placeholder="enter here.." name="hobbies"/>
+              </div>`;
+
+          return div;
+        }
+        let div = CreateRow();
+        mainRow.appendChild(div);
+      }
+
+      function addStrength() {
+        let mainRow = document.getElementById("strength");
+
+        function CreateRow() {
+          let div = document.createElement("div");
+          div.classList = "col-md-12";
+          let i = 1;
+          div.innerHTML = `<div class="form-group">
+                <input
+                  type="text"
+                  name="strength"
+                  class="form-control"
+                  placeholder="enter here"
+                />
+              </div>`;
+
+          return div;
+        }
+        let div = CreateRow();
+        mainRow.appendChild(div);
+      }
+    </script>
+  </body>
+</html>
